@@ -1,11 +1,112 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Express Static</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1>Hello from Express</h1>
-    <p>This file is being served!</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Winter Wonderland</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+      background-size: 400% 400%;
+      animation: aurora 12s ease infinite;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    @keyframes aurora {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh); }
+    }
+
+    .star {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 6px;
+      opacity: 0.8;
+      animation: twinkle ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+    }
+
+    nav a {
+      color: #00e5ff;
+      margin: 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>❄️ Winter Wonderland ❄️</h1>
+  <p id="message">Click the button for a holiday greeting</p>
+  <button onclick="changeMessage()">🎄 Holiday Magic</button>
+
+  <nav>
+    <a href="halloween.html">🎃 Halloween</a> |
+    <a href="summer.html">☀️ Summer</a>
+  </nav>
+
+  <script>
+    // Only one copy of this function
+    function changeMessage() {
+      document.getElementById("message").textContent =
+        "✨ Merry Christmas & Happy Holidays! ✨";
+    }
+
+    // Snowflakes
+    for (let i = 0; i < 40; i++) {
+      let snow = document.createElement("div");
+      snow.className = "snowflake";
+      snow.textContent = "❄";
+      snow.style.left = Math.random() * 100 + "vw";
+      snow.style.animationDuration = Math.random() * 5 + 5 + "s";
+      snow.style.fontSize = Math.random() * 20 + 10 + "px";
+      document.body.appendChild(snow);
+    }
+
+    // Twinkling stars
+    for (let i = 0; i < 60; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.textContent = "✦";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.animationDuration = Math.random() * 3 + 2 + "s";
+      star.style.fontSize = Math.random() * 6 + 4 + "px";
+      document.body.appendChild(star);
+    }
+  </script>
+
+</body>
 </html>

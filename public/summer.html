@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sunny Summer</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to top, #87CEEB, #ffffff); /* sky */
+      font-family: Arial, sans-serif;
+      color: #ff6600;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* Animated sun */
+    .sun {
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #FFD700, #FFA500);
+      border-radius: 50%;
+      box-shadow: 0 0 50px #FFD700;
+      animation: sunBounce 5s ease-in-out infinite alternate;
+      z-index: 2; /* sun above waves */
+    }
+
+    @keyframes sunBounce {
+      0% { transform: translateX(-50%) translateY(0); }
+      100% { transform: translateX(-50%) translateY(20px); }
+    }
+
+    /* Waves container */
+    .wave-layer {
+      position: fixed;
+      bottom: 0;
+      width: 200%;
+      height: 100px;
+      border-radius: 100% 50% 100% 50%;
+      background: rgba(0, 191, 255, 0.5);
+      filter: blur(4px);
+      animation: waveMove linear infinite;
+      z-index: 0;
+    }
+
+    /* Each wave layer animation durations will differ */
+    .wave1 { animation-duration: 6s; height: 100px; background: rgba(0,191,255,0.4); }
+    .wave2 { animation-duration: 10s; height: 120px; background: rgba(0,191,255,0.35); bottom: 20px; }
+    .wave3 { animation-duration: 14s; height: 140px; background: rgba(0,191,255,0.3); bottom: 40px; }
+
+    @keyframes waveMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Content on top of everything */
+    h1, p, button, nav {
+      position: relative;
+      z-index: 3; /* above sun and waves */
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      background-color: #FFD700;
+      color: #ff6600;
+    }
+
+    nav a {
+      color: #ff6600;
+      margin: 10px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sun -->
+  <div class="sun"></div>
+
+  <!-- Waves -->
+  <div class="wave-layer wave1"></div>
+  <div class="wave-layer wave2"></div>
+  <div class="wave-layer wave3"></div>
+
+  <!-- Content -->
+  <h1>☀️ Summer Vibes ☀️</h1>
+  <p id="message">Click the button for a sunny message!</p>
+  <button onclick="summerMessage()">🏖️ Summer Fun</button>
+
+  <nav>
+    <a href="index.html">❄️ Winter</a> |
+    <a href="halloween.html">🎃 Halloween</a>
+  </nav>
+
+  <script>
+    function summerMessage() {
+      const messages = [
+        "☀️ Time for the beach!",
+        "🏄 Surf's up!",
+        "🍦 Enjoy some ice cream!",
+        "🌴 Stay cool and relax!"
+      ];
+      const msg = messages[Math.floor(Math.random() * messages.length)];
+      document.getElementById("message").textContent = msg;
+    }
+  </script>
+</body>
+</html>
